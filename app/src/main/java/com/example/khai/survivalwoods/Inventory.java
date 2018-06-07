@@ -1,9 +1,11 @@
 package com.example.khai.survivalwoods;
 
-public class Inventory {
-    private static final int MAX_INVENTORY_SIZE = 100;
+import java.io.Serializable;
 
-    private Item[] items = new Item[MAX_INVENTORY_SIZE];
+public class Inventory implements Serializable{
+    private static final int MAX_INVENTORY_SIZE = 20;
+
+    public Item[] items = new Item[MAX_INVENTORY_SIZE];
 
     public Inventory() {
     }
@@ -30,7 +32,6 @@ public class Inventory {
     public Item getItemAt(int index) {
         return items[index];
     }
-
     public int getInventorySize() {
         return MAX_INVENTORY_SIZE;
     }

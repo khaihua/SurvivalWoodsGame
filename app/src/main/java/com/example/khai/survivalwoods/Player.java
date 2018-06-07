@@ -1,12 +1,13 @@
 package com.example.khai.survivalwoods;
+
 import java.io.Serializable;
 
-public class Player implements Serializable {
+public class Player implements Serializable{
     String name;
     private int health;
     private int hunger;
     private int thirst;
-    Inventory items = new Inventory();
+    Inventory inventory = new Inventory();
 
     {
         health = 100;

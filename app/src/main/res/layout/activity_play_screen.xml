@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".StartScreen"
-    android:background="@drawable/inventory">
+    android:background="@drawable/playscreen">
 
     <Button
         android:id="@+id/choice4"

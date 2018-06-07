@@ -32,6 +32,7 @@ public class PlayScreen extends AppCompatActivity {
         displayName = (TextView) findViewById(R.id.Name);
         displayName.setText(name);
         player.setName(name);
+        addBeginningItems();
         int health = player.getHealth();
         int hunger = player.getHunger();
         int thirst = player.getThirst();
@@ -61,6 +62,7 @@ public class PlayScreen extends AppCompatActivity {
     }
     public void openInventoryScreen() {
         Intent intent = new Intent(this, InventoryScreen.class);
+        intent.putExtra("player_data", player);
         startActivity(intent);
     }
     private void decreaseStats(){
@@ -88,6 +90,17 @@ public class PlayScreen extends AppCompatActivity {
         hungerValue.setText(hungerS);
         thirstValue.setText(thirstS);
         healthValue.setText(healthS);
+    }
+    public void addBeginningItems(){
+        String appleS = "apple";
+        String juiceS = "juice";
+        String candybarS = "candybar";
+        Item apple = new Item(appleS);
+        Item juice = new Item(juiceS);
+        Item candybar = new Item(candybarS);
+        player.inventory.addItem(apple);
+        player.inventory.addItem(juice);
+        player.inventory.addItem(candybar);
     }
     private void loadPage(int choice) {
         mCurrentPage = mStory.getPage(choice);
