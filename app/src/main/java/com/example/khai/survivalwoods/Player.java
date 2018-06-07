@@ -13,9 +13,6 @@ public class Player implements Serializable {
         hunger = 100;
         thirst = 100;
     }
-
-
-
     public void setName(String n){
         name = n;
     }
@@ -30,12 +27,18 @@ public class Player implements Serializable {
     }
     public void changeHunger(int n){
         hunger = hunger + n;
+        if(hunger < 0){
+            hunger = 0;
+        }
     }
     public int getHunger(){
         return hunger;
     }
     public void changeThirst(int n){
         thirst = thirst + n;
+        if(thirst < 0){
+            thirst = 0;
+        }
     }
     public int getThirst(){
         return thirst;

@@ -57,12 +57,37 @@ public class PlayScreen extends AppCompatActivity {
                 openInventoryScreen();
             }
         });
-
         loadPage(0);
     }
     public void openInventoryScreen() {
         Intent intent = new Intent(this, InventoryScreen.class);
         startActivity(intent);
+    }
+    private void decreaseStats(){
+        int hungerDecrease = -10;
+        int thirstDecrease = -7 ;
+        int healthDecrease = -5;
+        if(player.getHunger() > 0 ) {
+            player.changeHunger(hungerDecrease);
+        }
+        else{
+            player.changeHealth(healthDecrease);
+        }
+        if(player.getThirst() > 0) {
+            player.changeThirst(thirstDecrease);
+        }
+        else{
+            player.changeHealth(healthDecrease * 2);
+        }
+        int hunger = player.getHunger();
+        int thirst = player.getThirst();
+        int health = player.getHealth();
+        String hungerS = Integer.toString(hunger);
+        String thirstS = Integer.toString(thirst);
+        String healthS = Integer.toString(health);
+        hungerValue.setText(hungerS);
+        thirstValue.setText(thirstS);
+        healthValue.setText(healthS);
     }
     private void loadPage(int choice) {
         mCurrentPage = mStory.getPage(choice);
@@ -76,11 +101,33 @@ public class PlayScreen extends AppCompatActivity {
         mTextView.setText(pageText);
         if(mCurrentPage.isFinal()) {
             choice1.setVisibility(View.INVISIBLE);
+            choice3.setVisibility(View.INVISIBLE);
+            choice4.setVisibility(View.INVISIBLE);
             choice2.setText("PLAY AGAIN");
             choice2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     finish();
+                }
+            });
+        }
+        else if(player.getHealth() <= 0){
+            choice3.setVisibility(View.INVISIBLE);
+            choice4.setVisibility(View.INVISIBLE);
+            mTextView.setVisibility(View.INVISIBLE);
+            mImageView.setImageResource(R.drawable.died);
+            choice1.setText("YOU RAN OUT OF HEALTH!");
+            choice2.setText("PLAY AGAIN");
+            choice1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openStartScreen();
+                }
+            });
+            choice2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openStartScreen();
                 }
             });
         }
@@ -118,6 +165,7 @@ public class PlayScreen extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         int nextPage = mCurrentPage.getChoice1().getNextPage();
+                        decreaseStats();
                         loadPage(nextPage);
                     }
                 });
@@ -127,6 +175,7 @@ public class PlayScreen extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         int nextPage = mCurrentPage.getChoice2().getNextPage();
+                        decreaseStats();
                         loadPage(nextPage);
                     }
                 });
@@ -136,6 +185,7 @@ public class PlayScreen extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         int nextPage = mCurrentPage.getChoice3().getNextPage();
+                        decreaseStats();
                         loadPage(nextPage);
                     }
                 });
@@ -145,10 +195,19 @@ public class PlayScreen extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         int nextPage = mCurrentPage.getChoice4().getNextPage();
+                        decreaseStats();
                         loadPage(nextPage);
                     }
                 });
             }
         }
+    }
+    public void openStartScreen() {
+        Intent intent = new Intent( this, StartScreen.class );
+        startActivity(intent);
+    }
+    @Override
+    public void onBackPressed(){
+
     }
 }
