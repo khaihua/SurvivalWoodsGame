@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StartScreen"
+    android:background="@drawable/survivalwoodsbackground">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        android:text="Survival Woods"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="36sp"
+        app:fontFamily="@font/metalmacabre" />
+
+    <Button
+        android:id="@+id/play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="68dp"
+        android:background="@android:color/background_dark"
+        android:fadingEdge="none|horizontal"
+        android:text="Play"
+        android:textAppearance="@android:style/TextAppearance.Material.Button"
+        android:textColor="@android:color/holo_red_dark"
+        android:textStyle="bold"
+        app:fontFamily="@font/metalmacabre"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="445dp" />
+
+    <TextView
+        android:id="@+id/EnterName"
+        android:layout_width="wrap_content"
+        android:layout_height="78dp"
+        android:layout_centerInParent="true"
+        android:text="Your Name"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="30sp"
+        app:fontFamily="@font/metalmacabre" />
+
+    <EditText
+        android:id="@+id/NameInput"
+        android:layout_width="266dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="165dp"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:textColor="@android:color/white"
+        android:textSize="30sp" />
+
+</RelativeLayout>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StartScreen"
+    android:background="@drawable/inventory">
+
+    <Button
+        android:id="@+id/choice4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="#000000"
+        android:textColor="@android:color/background_light"
+        android:typeface="sans" />
+
+    <TextView
+        android:id="@+id/Name"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="18sp"
+        app:fontFamily="@font/metalmacabre"
+        android:layout_alignParentRight="true" />
+
+    <ImageView
+        android:id="@+id/Health"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/Name"
+        android:background="#9a0909"
+        android:contentDescription="@health"
+        app:srcCompat="@drawable/healthicon" />
+
+    <ImageView
+        android:id="@+id/Hunger"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/Name"
+        android:layout_toEndOf="@+id/healthvalue"
+        android:layout_toRightOf="@+id/healthvalue"
+        android:contentDescription="@hunger"
+        app:srcCompat="@drawable/foodicon" />
+
+    <ImageView
+        android:id="@+id/Thirst"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/Name"
+        android:layout_toEndOf="@+id/hungervalue"
+        android:layout_toRightOf="@+id/hungervalue"
+        android:contentDescription="@thirst"
+        app:srcCompat="@drawable/thirsticon" />
+
+    <ImageView
+        android:id="@+id/storyImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/itemButton"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/survivalwoodsbackground" />
+
+    <TextView
+        android:id="@+id/healthvalue"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/Name"
+        android:layout_toEndOf="@+id/Health"
+        android:gravity="center"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="20sp"
+        android:layout_toRightOf="@+id/Health" />
+
+    <TextView
+        android:id="@+id/hungervalue"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/Name"
+        android:layout_toEndOf="@+id/Hunger"
+        android:gravity="center"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="20sp"
+        android:layout_toRightOf="@+id/Hunger" />
+
+    <TextView
+        android:id="@+id/thirstvalue"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignTop="@+id/Name"
+        android:layout_toEndOf="@+id/Thirst"
+        android:gravity="center"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="20sp"
+        android:layout_toRightOf="@+id/Thirst" />
+
+    <TextView
+        android:id="@+id/storyTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:lineSpacingMultiplier="1.2"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="15dp"
+        android:textColor="@android:color/background_light" />
+
+    <Button
+        android:id="@+id/itemButton"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/Name"
+        android:background="@android:color/background_dark"
+        android:fadingEdge="none|horizontal"
+        android:text="Items"
+        android:textAppearance="@android:style/TextAppearance.Material.Button"
+        android:textColor="@android:color/holo_red_dark"
+        android:textStyle="bold"
+        app:fontFamily="@font/metalmacabre"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="445dp" />
+
+    <Button
+        android:id="@+id/choice2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/choice3"
+        android:layout_alignParentStart="true"
+        android:background="#000000"
+        android:textColor="@android:color/background_light"
+        android:typeface="sans" />
+
+    <Button
+        android:id="@+id/choice3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/choice4"
+        android:layout_alignParentStart="true"
+        android:background="#000000"
+        android:textColor="@android:color/background_light"
+        android:typeface="sans" />
+
+    <Button
+        android:id="@+id/choice1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/choice2"
+        android:layout_alignParentStart="true"
+        android:background="#000000"
+        android:textColor="@android:color/background_light"
+        android:typeface="sans" />
+
+</RelativeLayout>
