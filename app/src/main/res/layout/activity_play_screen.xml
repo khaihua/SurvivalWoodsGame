@@ -7,16 +7,6 @@
     tools:context=".StartScreen"
     android:background="@drawable/playscreen">
 
-    <Button
-        android:id="@+id/choice4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:background="#000000"
-        android:textColor="@android:color/background_light"
-        android:typeface="sans" />
-
     <TextView
         android:id="@+id/Name"
         android:layout_width="100dp"
@@ -110,7 +100,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
+        android:layout_alignTop="@+id/storyImageView"
         android:lineSpacingMultiplier="1.2"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
@@ -125,7 +115,7 @@
         android:layout_below="@+id/Name"
         android:background="@android:color/background_dark"
         android:fadingEdge="none|horizontal"
-        android:text="Items"
+        android:text="ITEMS"
         android:textAppearance="@android:style/TextAppearance.Material.Button"
         android:textColor="@android:color/holo_red_dark"
         android:textStyle="bold"
@@ -134,33 +124,87 @@
         tools:layout_editor_absoluteY="445dp" />
 
     <Button
-        android:id="@+id/choice2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/choice3"
-        android:layout_alignParentStart="true"
-        android:background="#000000"
+        android:id="@+id/restButton"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/storyImageView"
+        android:background="@android:color/background_dark"
+        android:fadingEdge="none|horizontal"
+        android:text="REST"
+        android:textAppearance="@android:style/TextAppearance.Material.Button"
         android:textColor="@android:color/background_light"
-        android:typeface="sans" />
+        android:textStyle="bold"
+        app:fontFamily="@font/metalmacabre"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="445dp" />
 
     <Button
-        android:id="@+id/choice3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/choice4"
-        android:layout_alignParentStart="true"
-        android:background="#000000"
+        android:id="@+id/drinkButton"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/storyImageView"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/background_dark"
+        android:fadingEdge="none|horizontal"
+        android:text="DRINK"
+        android:textAppearance="@android:style/TextAppearance.Material.Button"
         android:textColor="@android:color/background_light"
-        android:typeface="sans" />
+        android:textStyle="bold"
+        app:fontFamily="@font/metalmacabre"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="445dp" />
+
+    <Button
+        android:id="@+id/eatButton"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/storyImageView"
+        android:background="@android:color/background_dark"
+        android:fadingEdge="none|horizontal"
+        android:text="EAT"
+        android:textAppearance="@android:style/TextAppearance.Material.Button"
+        android:textColor="@android:color/background_light"
+        android:textStyle="bold"
+        app:fontFamily="@font/metalmacabre"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="445dp" />
 
     <Button
         android:id="@+id/choice1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/choice2"
-        android:layout_alignParentStart="true"
-        android:background="#000000"
-        android:textColor="@android:color/background_light"
-        android:typeface="sans" />
+        android:layout_height="40dp"
+        android:layout_below="@+id/restButton"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/background_dark"
+        android:textColor="@android:color/background_light" />
+
+    <Button
+        android:id="@+id/choice2"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/choice1"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/background_dark"
+        android:textColor="@android:color/background_light" />
+
+    <Button
+        android:id="@+id/choice3"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/choice2"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/background_dark"
+        android:textColor="@android:color/background_light"/>
+
+    <Button
+        android:id="@+id/choice4"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/choice3"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/background_dark"
+        android:textColor="@android:color/background_light" />
 
 </RelativeLayout>

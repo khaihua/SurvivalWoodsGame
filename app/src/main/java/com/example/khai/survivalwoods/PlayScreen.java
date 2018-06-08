@@ -10,25 +10,32 @@ import android.widget.TextView;
 
 
 public class PlayScreen extends AppCompatActivity {
+    private ImageView mImageView;
+    private TextView mTextView;
     TextView displayName;
     TextView healthValue;
     TextView hungerValue;
     TextView thirstValue;
-    private Button item;
-    Player player = new Player();
-    private Story mStory = new Story();
+
+    private Button itemClick;
     private Button choice1;
     private Button choice2;
     private Button choice3;
     private Button choice4;
+    private Button eat;
+    private Button drink;
+    private Button rest;
+
+    Player player = new Player();
+    private Story mStory = new Story();
     private Page mCurrentPage;
-    private ImageView mImageView;
-    private TextView mTextView;
+
+    private SoundPlayer sound;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        String name = getIntent().getStringExtra("Name");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_screen);
+        String name = getIntent().getStringExtra("Name");
         displayName = (TextView) findViewById(R.id.Name);
         displayName.setText(name);
         player.setName(name);
@@ -45,20 +52,69 @@ public class PlayScreen extends AppCompatActivity {
         healthValue.setText(healthS);
         hungerValue.setText(hungerS);
         thirstValue.setText(thirstS);
-        mImageView = (ImageView) findViewById(R.id.storyImageView);
-        mTextView = (TextView)findViewById((R.id.storyTextView));
-        choice1 = (Button) findViewById(R.id.choice1);
-        choice2 = (Button) findViewById(R.id.choice2);
-        choice3 = (Button) findViewById(R.id.choice3);
-        choice4 = (Button) findViewById(R.id.choice4);
-        item = (Button) findViewById(R.id.itemButton);
-        item.setOnClickListener(new View.OnClickListener() {
+    }
+    protected void onResume() {
+        super.onResume();
+        sound = new SoundPlayer(this);
+
+        mImageView = findViewById(R.id.storyImageView);
+        mTextView = findViewById((R.id.storyTextView));
+        choice1 = findViewById(R.id.choice1);
+        choice2 = findViewById(R.id.choice2);
+        choice3 = findViewById(R.id.choice3);
+        choice4 = findViewById(R.id.choice4);
+        eat = findViewById(R.id.eatButton);
+        drink = findViewById(R.id.drinkButton);
+        rest = findViewById(R.id.restButton);
+        itemClick = findViewById(R.id.itemButton);
+        itemClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openInventoryScreen();
             }
         });
+        drink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(player.inventory.items[0].Count() > 0){
+                    player.changeThirst(50);
+                    player.inventory.items[0].decreaseCount();
+                    int thirst = player.getThirst();
+                    String thirstS = Integer.toString(thirst);
+                    thirstValue.setText(thirstS);
+                    sound.playDrinkSound();
+                }
+            }
+        });
+        eat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(player.inventory.items[1].Count() > 0){
+                    player.changeHunger(25);
+                    player.inventory.items[1].decreaseCount();
+                    int hunger = player.getHunger();
+                    String hungerS = Integer.toString(hunger);
+                    hungerValue.setText(hungerS);
+                    sound.playEatSound();
+                }
+            }
+        });
+
+        rest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(player.getThirst() > 0 || player.getHunger() > 0) {
+                    player.changeHealth(5);
+                    decreaseStats();
+                    int health = player.getHealth();
+                    String healthS = Integer.toString(health);
+                    healthValue.setText(healthS);
+                    sound.playRestSound();
+                }
+            }
+        });
         loadPage(0);
+
     }
     public void openInventoryScreen() {
         Intent intent = new Intent(this, InventoryScreen.class);
@@ -92,13 +148,8 @@ public class PlayScreen extends AppCompatActivity {
         healthValue.setText(healthS);
     }
     public void addBeginningItems(){
-        String appleS = "apple";
-        String juiceS = "juice";
-        String candybarS = "candybar";
-        Item apple = new Item(appleS);
-        Item juice = new Item(juiceS);
-        Item candybar = new Item(candybarS);
-        player.inventory.addItem(apple);
+        Item juice = new Item("juice", 5);
+        Item candybar = new Item("candybar",5);
         player.inventory.addItem(juice);
         player.inventory.addItem(candybar);
     }
@@ -108,6 +159,9 @@ public class PlayScreen extends AppCompatActivity {
         boolean hasChoice2 = true;
         boolean hasChoice3 = true;
         boolean hasChoice4 = true;
+        choice1.setVisibility(View.INVISIBLE);
+        choice3.setVisibility(View.INVISIBLE);
+        choice4.setVisibility(View.INVISIBLE);
         Drawable drawable = getResources().getDrawable(mCurrentPage.getImageId());
         mImageView.setImageDrawable(drawable);
         String pageText = mCurrentPage.getText();
@@ -147,6 +201,7 @@ public class PlayScreen extends AppCompatActivity {
         else {
             try {
                 choice1.setText(mCurrentPage.getChoice1().getText());
+                choice1.setVisibility(View.VISIBLE);
             }
             catch(NullPointerException e)
             {
@@ -154,13 +209,16 @@ public class PlayScreen extends AppCompatActivity {
             }
             try {
                 choice2.setText(mCurrentPage.getChoice2().getText());
+                choice2.setVisibility(View.VISIBLE);
             }
             catch(NullPointerException e)
             {
                 hasChoice2 = false;
+                choice2.setVisibility(View.INVISIBLE);
             }
             try {
                 choice3.setText(mCurrentPage.getChoice3().getText());
+                choice3.setVisibility(View.VISIBLE);
             }
             catch(NullPointerException e)
             {
@@ -168,6 +226,7 @@ public class PlayScreen extends AppCompatActivity {
             }
             try {
                 choice4.setText(mCurrentPage.getChoice4().getText());
+                choice4.setVisibility(View.VISIBLE);
             }
             catch(NullPointerException e)
             {
