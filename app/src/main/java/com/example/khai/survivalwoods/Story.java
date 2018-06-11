@@ -33,7 +33,7 @@ public class Story {
                 R.drawable.survivalwoodsbackground,
                 "You move towards the cave, and go inside. You keep walking forward until you see another split in the path, veering to the right and left.",
                 new Choice("Go towards the left path",7),
-                new Choice("Go towards the right path", 4));
+                new Choice("Go towards the right path", 9));
 
         mPages[4] = new Page(
                 R.drawable.survivalwoodsbackground,

@@ -267,7 +267,7 @@ public class PlayScreen extends AppCompatActivity {
             choice2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    finish();
+                    openStartScreen();
                 }
             });
             if(mCurrentPage.isDead()){
@@ -332,6 +332,7 @@ public class PlayScreen extends AppCompatActivity {
             catch(NullPointerException e)
             {
                 hasChoice3 = false;
+                choice3.setVisibility(View.INVISIBLE);
             }
             try {
                 choice4.setText(mCurrentPage.getChoice4().getText());
@@ -340,6 +341,7 @@ public class PlayScreen extends AppCompatActivity {
             catch(NullPointerException e)
             {
                 hasChoice4 = false;
+                choice4.setVisibility(View.INVISIBLE);
             }
             if (hasChoice1 == true){
                 choice1.setOnClickListener(new View.OnClickListener() {
