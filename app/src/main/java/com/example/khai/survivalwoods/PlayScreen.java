@@ -1,6 +1,7 @@
 package com.example.khai.survivalwoods;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,10 @@ public class PlayScreen extends AppCompatActivity {
     TextView healthValue;
     TextView hungerValue;
     TextView thirstValue;
+    TextView itemChange;
+
+    Boolean inventoryButtonPressed;
+    int currentPage;
 
     private Button itemClick;
     private Button choice1;
@@ -31,12 +36,13 @@ public class PlayScreen extends AppCompatActivity {
     private Page mCurrentPage;
 
     private SoundPlayer sound;
+    MediaPlayer gameSound;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_screen);
         String name = getIntent().getStringExtra("Name");
-        displayName = (TextView) findViewById(R.id.Name);
+        displayName = findViewById(R.id.Name);
         displayName.setText(name);
         player.setName(name);
         addBeginningItems();
@@ -52,11 +58,19 @@ public class PlayScreen extends AppCompatActivity {
         healthValue.setText(healthS);
         hungerValue.setText(hungerS);
         thirstValue.setText(thirstS);
+        itemChange = findViewById(R.id.itemChange);
+        inventoryButtonPressed = false;
+        currentPage = 0;
+
+        gameSound = MediaPlayer.create(PlayScreen.this, R.raw.creepythemesong);
+        gameSound.start();
+        gameSound.setLooping(true);
     }
     protected void onResume() {
         super.onResume();
         sound = new SoundPlayer(this);
-
+        gameSound.start();
+        gameSound.setLooping(true);
         mImageView = findViewById(R.id.storyImageView);
         mTextView = findViewById((R.id.storyTextView));
         choice1 = findViewById(R.id.choice1);
@@ -78,7 +92,7 @@ public class PlayScreen extends AppCompatActivity {
             public void onClick(View v) {
                 if(player.inventory.items[0].Count() > 0){
                     player.changeThirst(50);
-                    player.inventory.items[0].decreaseCount();
+                    player.inventory.items[0].changeCount(-1);
                     int thirst = player.getThirst();
                     String thirstS = Integer.toString(thirst);
                     thirstValue.setText(thirstS);
@@ -91,7 +105,7 @@ public class PlayScreen extends AppCompatActivity {
             public void onClick(View v) {
                 if(player.inventory.items[1].Count() > 0){
                     player.changeHunger(25);
-                    player.inventory.items[1].decreaseCount();
+                    player.inventory.items[1].changeCount(-1);
                     int hunger = player.getHunger();
                     String hungerS = Integer.toString(hunger);
                     hungerValue.setText(hungerS);
@@ -113,8 +127,7 @@ public class PlayScreen extends AppCompatActivity {
                 }
             }
         });
-        loadPage(0);
-
+        loadPage(currentPage);
     }
     public void openInventoryScreen() {
         Intent intent = new Intent(this, InventoryScreen.class);
@@ -153,8 +166,82 @@ public class PlayScreen extends AppCompatActivity {
         player.inventory.addItem(juice);
         player.inventory.addItem(candybar);
     }
+    public void changeItemAmount(int juiceGained, int candybarGained){
+        player.inventory.items[0].changeCount(juiceGained);
+        player.inventory.items[1].changeCount(candybarGained);
+        String juiceS = null;
+        String candyS = null;
+        String text;
+        itemChange.setVisibility(View.INVISIBLE);
+        if (juiceGained > 0 && candybarGained > 0){
+            juiceS = Integer.toString(juiceGained);
+            candyS = Integer.toString(candybarGained);
+        }
+        else if(juiceGained > 0 && candybarGained == 0){
+            juiceS = Integer.toString(juiceGained);
+        }
+        else if(juiceGained == 0 && candybarGained > 0){
+            candyS = Integer.toString(candybarGained);
+        }
+        else{
+            return;
+        }
+
+        if(juiceS == null && candyS == null){
+            return;
+        }
+        else if(juiceS != null && candyS == null){
+            itemChange.setVisibility(View.VISIBLE);
+            if (juiceGained == 1) {
+                text = "You've acquired 1 juice";
+                itemChange.setText(text);
+                return;
+            }
+            else{
+                text = "You've acquired" + juiceS + "juices";
+                return;
+            }
+        }
+        else if(juiceS == null && candyS != null){
+            itemChange.setVisibility(View.VISIBLE);
+            if (candybarGained == 1) {
+                text = "You've acquired 1 candybar";
+                itemChange.setText(text);
+                return;
+            }
+            else{
+                text = "You've acquired" + candyS + "candybars";
+                itemChange.setText(text);
+                return;
+            }
+        }
+        else if (juiceS != null && candyS != null){
+            itemChange.setVisibility(View.VISIBLE);
+            if (juiceGained == 1) {
+                text = "You've acquired 1 juice";
+            }
+            else{
+                text = "You've acquired " + juiceS + " juices";
+            }
+            if (candybarGained == 1) {
+                text = text +" and 1 candybar";
+                itemChange.setText(text);
+                return;
+            }
+            else{
+                text = text +" and " + candyS+ " candybars";
+                itemChange.setText(text);
+                return;
+            }
+        }
+        else{
+            itemChange.setVisibility(View.INVISIBLE);
+            return;
+        }
+    }
     private void loadPage(int choice) {
         mCurrentPage = mStory.getPage(choice);
+        currentPage = choice;
         boolean hasChoice1 = true;
         boolean hasChoice2 = true;
         boolean hasChoice3 = true;
@@ -238,6 +325,8 @@ public class PlayScreen extends AppCompatActivity {
                     public void onClick(View v) {
                         int nextPage = mCurrentPage.getChoice1().getNextPage();
                         decreaseStats();
+                        changeItemAmount(mCurrentPage.getChoice1().getJuiceGained(),
+                                mCurrentPage.getChoice1().getCandybarGained());
                         loadPage(nextPage);
                     }
                 });
@@ -248,6 +337,8 @@ public class PlayScreen extends AppCompatActivity {
                     public void onClick(View v) {
                         int nextPage = mCurrentPage.getChoice2().getNextPage();
                         decreaseStats();
+                        changeItemAmount(mCurrentPage.getChoice2().getJuiceGained(),
+                                mCurrentPage.getChoice2().getCandybarGained());
                         loadPage(nextPage);
                     }
                 });
@@ -258,6 +349,8 @@ public class PlayScreen extends AppCompatActivity {
                     public void onClick(View v) {
                         int nextPage = mCurrentPage.getChoice3().getNextPage();
                         decreaseStats();
+                        changeItemAmount(mCurrentPage.getChoice3().getJuiceGained(),
+                                mCurrentPage.getChoice3().getCandybarGained());
                         loadPage(nextPage);
                     }
                 });
@@ -268,6 +361,8 @@ public class PlayScreen extends AppCompatActivity {
                     public void onClick(View v) {
                         int nextPage = mCurrentPage.getChoice4().getNextPage();
                         decreaseStats();
+                        changeItemAmount(mCurrentPage.getChoice4().getJuiceGained(),
+                                mCurrentPage.getChoice4().getCandybarGained());
                         loadPage(nextPage);
                     }
                 });
@@ -281,5 +376,15 @@ public class PlayScreen extends AppCompatActivity {
     @Override
     public void onBackPressed(){
 
+    }
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        gameSound.stop();
+    }
+    @Override
+    protected void onPause(){
+        super.onPause();
+        gameSound.pause();
     }
 }

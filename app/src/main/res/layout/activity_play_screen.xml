@@ -128,7 +128,7 @@
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/storyImageView"
+        android:layout_alignTop="@+id/drinkButton"
         android:background="@android:color/background_dark"
         android:fadingEdge="none|horizontal"
         android:text="REST"
@@ -143,7 +143,7 @@
         android:id="@+id/drinkButton"
         android:layout_width="120dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/storyImageView"
+        android:layout_alignTop="@+id/eatButton"
         android:layout_centerHorizontal="true"
         android:background="@android:color/background_dark"
         android:fadingEdge="none|horizontal"
@@ -159,8 +159,9 @@
         android:id="@+id/eatButton"
         android:layout_width="120dp"
         android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/storyImageView"
+        android:layout_marginBottom="201dp"
         android:background="@android:color/background_dark"
         android:fadingEdge="none|horizontal"
         android:text="EAT"
@@ -175,8 +176,8 @@
         android:id="@+id/choice1"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_below="@+id/restButton"
-        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/choice2"
+        android:layout_alignParentStart="true"
         android:background="@android:color/background_dark"
         android:textColor="@android:color/background_light" />
 
@@ -184,8 +185,8 @@
         android:id="@+id/choice2"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_below="@+id/choice1"
-        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/choice3"
+        android:layout_alignParentStart="true"
         android:background="@android:color/background_dark"
         android:textColor="@android:color/background_light" />
 
@@ -193,18 +194,28 @@
         android:id="@+id/choice3"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_below="@+id/choice2"
-        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/choice4"
+        android:layout_alignParentStart="true"
         android:background="@android:color/background_dark"
-        android:textColor="@android:color/background_light"/>
+        android:textColor="@android:color/background_light" />
 
     <Button
         android:id="@+id/choice4"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_below="@+id/choice3"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
         android:background="@android:color/background_dark"
+        android:textColor="@android:color/background_light" />
+
+    <TextView
+        android:id="@+id/itemChange"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="172dp"
+        android:gravity="center"
         android:textColor="@android:color/background_light" />
 
 </RelativeLayout>

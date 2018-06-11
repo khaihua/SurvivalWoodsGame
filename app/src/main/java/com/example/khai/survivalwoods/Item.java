@@ -20,10 +20,8 @@ public class Item implements Serializable{
                 String countS = Integer.toString(count);
                 return countS;
         }
-        public void decreaseCount(){
-                count = count - 1;
+        public void changeCount(int number){
+                count += number;
         }
-        public void increaseCount(){
-                count = count +1;
-        }
+
 }

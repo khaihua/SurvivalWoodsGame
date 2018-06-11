@@ -9,7 +9,7 @@ public class Story {
         mPages[0] = new Page(
                 R.drawable.survivalwoodsbackground,
                 "\"%s\"...  You're sleeping soundly in your bed, when you're awakened by the sound of your name.  Suddenly there’s a commotion downstairs!",
-                new Choice("Check it out", 1),
+                new Choice("Check it out", 1,1,0),
                 new Choice("Hide and call 911", 2));
 
         mPages[1] = new Page(
