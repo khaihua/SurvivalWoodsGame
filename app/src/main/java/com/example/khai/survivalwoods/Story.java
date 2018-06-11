@@ -1,10 +1,16 @@
 package com.example.khai.survivalwoods;
-
+/**
+ * Use this class to add story elements
+ * You can initiate a new page with up to 4 choices
+ * If the event causes death then usage is mPages[page] = new Page(background,text, true)
+ * if the event causes hp to be lost then usage is mPages[page] = new Page(background, text, choices, amount of hp lost)
+ * I.E mPages[page] = new Page(background, text, choice 1, choice2, 25) if player goes to this page then 25 hp will be lost
+ */
 public class Story {
     private Page[] mPages;
 
     public Story() {
-        mPages = new Page[25];
+        mPages = new Page[100];
 
         mPages[0] = new Page(
                 R.drawable.survivalwoodsbackground,
