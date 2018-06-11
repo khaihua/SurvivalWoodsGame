@@ -8,63 +8,63 @@ public class Story {
 
         mPages[0] = new Page(
                 R.drawable.survivalwoodsbackground,
-                "\"%s\"...  You're sleeping soundly in your bed, when you're awakened by the sound of your name.  Suddenly there’s a commotion downstairs!",
-                new Choice("Check it out", 1,1,0),
-                new Choice("Hide and call 911", 2));
+                "You are driving to see your grandma when your car breaks down in the middle of the road. You are stranded in the forest and must get out. Food and water is limited; you must act fast.",
+                new Choice("Continue", 1));
 
         mPages[1] = new Page(
                 R.drawable.survivalwoodsbackground,
-                "You sneak downstairs to find a light on in the kitchen. You can hear the sound of two voices having a hushed conversation.",
-                new Choice("Investigate further!", 4),
-                new Choice("I'm out! Climb out the upstairs window.", 3));
+                "You start walking around the forest and come across a fork in the path. There is a river to the right, and a cave to the left.",
+                new Choice("Go towards the river", 2),
+                new Choice("Go towards the cave", 3));
 
         mPages[2] = new Page(
                 R.drawable.survivalwoodsbackground,
-                "You reach for your phone, but the battery is dead. Now what?",
-                new Choice("Climb out the window", 3),
-                new Choice("Sneak downstairs", 1));
+                "You move towards the river, and stop on the bank. You see a sign on the other side, but can’t make out the words. However, the current is very strong at this time.",
+                new Choice("Try to swim across the river", 4),
+                new Choice("Wait for the current to die down", 5));
 
         mPages[3] = new Page(
                 R.drawable.survivalwoodsbackground,
-                "You're not sure what's going on in your house, and you don't care to find out! You climb out the upstairs window and thud to the ground in the yard. You're trying to decide what to do next when something shambles up out of the shadows! \"%s! It's you! It's really you! Listen, my name is Jim, and I'm from the future! I've been sent here to make sure that you make the right decision. You need to go back inside to your kitchen or we're all doomed!\"",
-                new Choice("Drugs are bad, man.",23),
-                new Choice("Okay! Your enthusiasm is contagious!", 4));
+                "You move towards the cave, and go inside. You keep walking forward until you see another split in the path, veering to the right and left.",
+                new Choice("Go towards the left path",7),
+                new Choice("Go towards the right path", 4));
 
         mPages[4] = new Page(
                 R.drawable.survivalwoodsbackground,
-                "You sneak up to the kitchen and peer around the corner to find a bizarre sight. A cat in a rainbow scarf stands on the table across from what looks to be a strawberry flan.",
-                new Choice("You must be dreaming. Pinch yourself.", 24),
-                new Choice("Clear your throat", 18));
+                "You were a fool for doing so. The current is too strong, you struggle and drown.",true);
 
         mPages[5] = new Page(
                 R.drawable.survivalwoodsbackground,
-                "How did it come to this? You're no match for the giant flan. The human race is no match for the giant flan. Even the mysterious cat is no match for the giant flan. The planet is conquered! And it's all because of your choices in the kitchen at 2 AM.");
+                "You wait for the current to die down, then swim across the river. You walk to the sign. It reads:\n" +
+                        "\n" +
+                        "\t‘Beyond this lies Bear Territory. Proceed with caution. Nearest town 10 miles from here.’",
+                new Choice("Go towards the town by passing through Bear Territory",6),
+                new Choice("Go back", 24));
 
         mPages[6] = new Page(
                 R.drawable.survivalwoodsbackground,
-                "You bolt from the kitchen, heading for the front door. The sound of claws on linoleum follows. \"Wait!\" comes a tiny voice from behind you.",
-                new Choice("Oh hell no!",21),
-                new Choice("Stop and turn around",7));
+                "You start walking through the Bear Territory. You suddenly hear a rustle in the bushes.",
+                new Choice("Keep walking forward.",24),
+                new Choice("Go hide in some nearby bushes.",24));
 
 
         mPages[7] = new Page(
                 R.drawable.survivalwoodsbackground,
-                "The cuteness of the voice is too much to resist. You stop and turn to meet the eyes of an adorable cat.\n" +
-                        "\"I'm sorry for scaring you, %s. It is imperative that you hear me out. Please, come to the kitchen where we may talk.\"",
-                new Choice("What could possibly go wrong? Follow the cat.",8),
-                new Choice("This is a bad idea, run!",21));
+                "You walk towards the left path, but step into a hole and fall.",
+                new Choice("Try to climb out.",8),
+                new Choice("Wait and see if someone will come save you by chance.",21));
 
         mPages[8] = new Page(
                 R.drawable.survivalwoodsbackground,
-                "The cat seems trustworthy enough, as far as cats in rainbow scarfs go. You enter the kitchen, where it gestures to the flan. \"Please, %s, sit. Have some flan. I have brought it as a gesture of goodwill.\"",
-                new Choice("This can't get any more weird. Eat the flan",9),
-                new Choice("I'm not a fan of flan. No thanks.",16));
+                "You try to climb, but the rocks are too steep and sharp. You fall back down and hurt yourself. But as you hit the ground again the ground opens up again and you fall into a underground tunnel. You can go left or right.",
+                new Choice("Go left.",24),
+                new Choice("Go right.",24));
 
         mPages[9] = new Page(
                 R.drawable.survivalwoodsbackground,
-                "If there was ever a time for flan, it's when a rainbow scarf clad cat offers it to you at 2 AM. You turn away from the cat and the flan and grab a fork. \"%s, Stop!\" gasps a voice. \"Wait! Don't turn around!\"",
-                new Choice("Turn around.",10),
-                new Choice("Don't turn around.",11));
+                "You walk through the right tunnel, and start to see light coming out from the end of it.",
+                new Choice("Keep walking towards the end of the light.",24),
+                new Choice("Go back.",24));
 
         mPages[10] = new Page(
                 R.drawable.survivalwoodsbackground,

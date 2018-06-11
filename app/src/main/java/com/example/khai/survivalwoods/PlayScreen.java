@@ -36,7 +36,7 @@ public class PlayScreen extends AppCompatActivity {
     private Page mCurrentPage;
 
     private SoundPlayer sound;
-    MediaPlayer gameSound;
+    MediaPlayer gameSound, deathSound;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +65,8 @@ public class PlayScreen extends AppCompatActivity {
         gameSound = MediaPlayer.create(PlayScreen.this, R.raw.creepythemesong);
         gameSound.start();
         gameSound.setLooping(true);
+
+        deathSound = MediaPlayer.create(PlayScreen.this, R.raw.death);
     }
     protected void onResume() {
         super.onResume();
@@ -264,6 +266,20 @@ public class PlayScreen extends AppCompatActivity {
                     finish();
                 }
             });
+            if(mCurrentPage.isDead()){
+                gameSound.stop();
+                deathSound.start();
+                deathSound.setLooping(true);
+                int hunger = 0;
+                int thirst = 0;
+                int health = 0;
+                String hungerS = Integer.toString(hunger);
+                String thirstS = Integer.toString(thirst);
+                String healthS = Integer.toString(health);
+                hungerValue.setText(hungerS);
+                thirstValue.setText(thirstS);
+                healthValue.setText(healthS);
+            }
         }
         else if(player.getHealth() <= 0){
             choice3.setVisibility(View.INVISIBLE);
@@ -284,6 +300,8 @@ public class PlayScreen extends AppCompatActivity {
                     openStartScreen();
                 }
             });
+            deathSound.start();
+            deathSound.setLooping(true);
         }
         else {
             try {
@@ -381,6 +399,7 @@ public class PlayScreen extends AppCompatActivity {
     protected void onDestroy(){
         super.onDestroy();
         gameSound.stop();
+        deathSound.stop();
     }
     @Override
     protected void onPause(){
