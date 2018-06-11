@@ -12,6 +12,7 @@ public class Choice {
         this.juiceGained = juice;
         this.candybarGained = candybar;
     }
+
     public Choice(String text, int nextPage){
         this.mText = text;
         this.mNextPage = nextPage;

@@ -56,9 +56,9 @@ public class Story {
 
         mPages[8] = new Page(
                 R.drawable.survivalwoodsbackground,
-                "You try to climb, but the rocks are too steep and sharp. You fall back down and hurt yourself. But as you hit the ground again the ground opens up again and you fall into a underground tunnel. You can go left or right.",
+                "You try to climb, but the rocks are too steep and sharp. You fall back down and hurt yourself. But as you hit the ground again the ground opens up again and you fall into an underground tunnel. You can go left or right.",
                 new Choice("Go left.",24),
-                new Choice("Go right.",24));
+                new Choice("Go right.",24),25);
 
         mPages[9] = new Page(
                 R.drawable.survivalwoodsbackground,

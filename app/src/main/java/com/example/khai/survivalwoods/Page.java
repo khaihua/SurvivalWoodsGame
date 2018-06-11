@@ -9,6 +9,7 @@ public class Page {
     private Choice mChoice4;
     private boolean mIsFinal = false;
     private boolean misDead = false;
+    private int healthLost;
 
     public Page (int imageId, String text, Choice choice1, Choice choice2 , Choice choice3, Choice choice4) {
         this.mChoice1 = choice1;
@@ -17,6 +18,16 @@ public class Page {
         this.mChoice4 = choice4;
         this.mText = text;
         this.mImageId = imageId;
+        healthLost = 0;
+    }
+    public Page (int imageId, String text, Choice choice1, Choice choice2 , Choice choice3, Choice choice4, int HpLost) {
+        this.mChoice1 = choice1;
+        this.mChoice2 = choice2;
+        this.mChoice3 = choice3;
+        this.mChoice4 = choice4;
+        this.mText = text;
+        this.mImageId = imageId;
+        this.healthLost = HpLost;
     }
     public Page (int imageId, String text, Choice choice1, Choice choice2 , Choice choice3) {
         this.mChoice1 = choice1;
@@ -24,12 +35,29 @@ public class Page {
         this.mChoice3 = choice3;
         this.mText = text;
         this.mImageId = imageId;
+        this.healthLost = 0;
+    }
+    public Page (int imageId, String text, Choice choice1, Choice choice2 , Choice choice3, int HpLost) {
+        this.mChoice1 = choice1;
+        this.mChoice2 = choice2;
+        this.mChoice3 = choice3;
+        this.mText = text;
+        this.mImageId = imageId;
+        this.healthLost = HpLost;
     }
     public Page (int imageId, String text, Choice choice1, Choice choice2) {
         this.mChoice1 = choice1;
         this.mChoice2 = choice2;
         this.mText = text;
         this.mImageId = imageId;
+        this.healthLost = 0;
+    }
+    public Page (int imageId, String text, Choice choice1, Choice choice2, int HpLost) {
+        this.mChoice1 = choice1;
+        this.mChoice2 = choice2;
+        this.mText = text;
+        this.mImageId = imageId;
+        this.healthLost = HpLost;
     }
     public Page (int imageId, String text, Choice choice1) {
         this.mChoice1 = choice1;
@@ -109,6 +137,8 @@ public class Page {
     public void setText(String text) {
         mText = text;
     }
+
+    public int getHealthLost(){return healthLost;}
 
 
 }

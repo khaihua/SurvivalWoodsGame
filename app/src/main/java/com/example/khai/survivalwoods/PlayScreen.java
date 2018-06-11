@@ -255,6 +255,10 @@ public class PlayScreen extends AppCompatActivity {
         mImageView.setImageDrawable(drawable);
         String pageText = mCurrentPage.getText();
         mTextView.setText(pageText);
+        player.changeHealth(mCurrentPage.getHealthLost() * -1);
+        int health = player.getHealth();
+        String healthS = Integer.toString(health);
+        healthValue.setText(healthS);
         if(mCurrentPage.isFinal()) {
             choice1.setVisibility(View.INVISIBLE);
             choice3.setVisibility(View.INVISIBLE);
@@ -272,10 +276,10 @@ public class PlayScreen extends AppCompatActivity {
                 deathSound.setLooping(true);
                 int hunger = 0;
                 int thirst = 0;
-                int health = 0;
+                health = 0;
                 String hungerS = Integer.toString(hunger);
                 String thirstS = Integer.toString(thirst);
-                String healthS = Integer.toString(health);
+                healthS = Integer.toString(health);
                 hungerValue.setText(hungerS);
                 thirstValue.setText(thirstS);
                 healthValue.setText(healthS);
