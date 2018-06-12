@@ -63,7 +63,15 @@ public class Page {
         this.mChoice1 = choice1;
         this.mText = text;
         this.mImageId = imageId;
+        this.healthLost = 0;
     }
+    public Page (int imageId, String text, Choice choice1, int HpLost) {
+        this.mChoice1 = choice1;
+        this.mText = text;
+        this.mImageId = imageId;
+        this.healthLost = HpLost;
+    }
+
     public Page (int imageId, String text, boolean dead) {
         this.mChoice4 = null;
         this.mChoice3 = null;
